@@ -1,0 +1,37 @@
+{
+  "python": "3.12.14",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.3.5",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "device": "cpu",
+  "threads": 2,
+  "cpu": "x86_64",
+  "mnist_sha256": "731c5ac602752760c8e48fbffcf8c3b850d9dc2a2aedcf2cc48468fc17b673d1",
+  "train_n": 50000,
+  "validation_n": 10000,
+  "test_n": 10000,
+  "train_class_counts": [
+    4936,
+    5618,
+    4965,
+    5109,
+    4868,
+    4518,
+    4932,
+    5221,
+    4876,
+    4957
+  ],
+  "validation_class_counts": [
+    987,
+    1124,
+    993,
+    1022,
+    974,
+    903,
+    986,
+    1044,
+    975,
+    992
+  ]
+}

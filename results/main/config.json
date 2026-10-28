@@ -1,0 +1,49 @@
+{
+  "epochs": 12,
+  "batch_size": 128,
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "split_seed": 42,
+  "selection": "lowest mean best validation loss across seeds",
+  "experiments": [
+    {
+      "name": "baseline",
+      "hidden": [
+        128,
+        64
+      ],
+      "dropout": 0.0,
+      "lr": 0.001
+    },
+    {
+      "name": "wider",
+      "hidden": [
+        256,
+        128
+      ],
+      "dropout": 0.0,
+      "lr": 0.001
+    },
+    {
+      "name": "dropout",
+      "hidden": [
+        128,
+        64
+      ],
+      "dropout": 0.2,
+      "lr": 0.001
+    },
+    {
+      "name": "lower_lr",
+      "hidden": [
+        128,
+        64
+      ],
+      "dropout": 0.0,
+      "lr": 0.0003
+    }
+  ]
+}

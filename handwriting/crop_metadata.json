@@ -1,0 +1,79 @@
+{
+  "original": "raw/student_number.jpg",
+  "original_size": [
+    1550,
+    779
+  ],
+  "coordinate_order": "left, top, right, bottom; right/bottom exclusive",
+  "method": "manually reviewed rectangular crops; no stroke modification",
+  "labels_source": "human visual transcription; student confirmation recommended",
+  "transcription": "22120606015",
+  "boxes": [
+    [
+      190,
+      350,
+      315,
+      490
+    ],
+    [
+      324,
+      350,
+      452,
+      475
+    ],
+    [
+      441,
+      330,
+      504,
+      470
+    ],
+    [
+      512,
+      340,
+      622,
+      475
+    ],
+    [
+      622,
+      335,
+      733,
+      462
+    ],
+    [
+      743,
+      322,
+      839,
+      457
+    ],
+    [
+      840,
+      340,
+      941,
+      464
+    ],
+    [
+      944,
+      337,
+      1042,
+      468
+    ],
+    [
+      1039,
+      333,
+      1139,
+      467
+    ],
+    [
+      1145,
+      336,
+      1208,
+      452
+    ],
+    [
+      1209,
+      333,
+      1337,
+      455
+    ]
+  ]
+}
