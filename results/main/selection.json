@@ -1,0 +1,12 @@
+{
+  "experiment": "dropout",
+  "seed": 42,
+  "checkpoint": "dropout_seed42/best.pt",
+  "mean_validation_losses": {
+    "baseline": 0.08963001416524252,
+    "wider": 0.08144719683329264,
+    "dropout": 0.08024012540181477,
+    "lower_lr": 0.11568321914672851
+  },
+  "selection_uses_test": false
+}

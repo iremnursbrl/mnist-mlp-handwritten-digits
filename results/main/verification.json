@@ -1,0 +1,24 @@
+{
+  "unit_tests": 3,
+  "passed": 3,
+  "completed_training_runs": 12,
+  "epochs_per_run": 12,
+  "checks": [
+    "train/validation disjoint and exhaustive",
+    "network logits and finite gradients",
+    "preprocessing polarity equivalence and blank image rejection",
+    "saved test predictions agree with reported accuracy for all 12 runs",
+    "best epoch agrees with minimum validation loss for all 12 runs",
+    "single-image inference pipeline tested using synthetic shape, not student handwriting"
+  ],
+  "pending": [
+    "student checks visually transcribed school number and explains project",
+    "GitHub publication"
+  ],
+  "real_handwriting": {
+    "n_digits": 11,
+    "correct": 11,
+    "exact_match": true,
+    "ground_truth_source": "human transcription of user photo"
+  }
+}
