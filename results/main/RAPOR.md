@@ -2,7 +2,7 @@
 
 **Öğrenci:** İrem Nur Sabırlı  
 **Öğrenci numarası (görselden okunan):** 22120606015  
-**Durum:** MNIST ve gerçek el yazısı deneyleri tamamlandı; GitHub yayımlama adımı bekleniyor.
+**Üniversite:** İstanbul Medeniyet Üniversitesi
 
 ## 1. Amaç ve deney tasarımı
 

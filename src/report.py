@@ -99,7 +99,7 @@ def generate(root):
                 'Model ve hiperparametreler el yazısı sonucu görüldükten sonra değiştirilmemiştir. Görsel eğitimde veya model seçiminde kullanılmamıştır. Bu sonuç, elle ayrılmış rakamların sınıflandırılmasıdır; otomatik tam sayfa OCR veya otomatik numara bölme başarısı değildir.',
             ])
             lines[start:end] = section
-            lines[1] = '**Öğrenci:** İrem Nur Sabırlı  \n**Öğrenci numarası (görselden okunan):** 22120606015  \n**Durum:** MNIST ve gerçek el yazısı deneyleri tamamlandı; GitHub yayımlama adımı bekleniyor.'
+            lines[1] = '**Öğrenci:** İrem Nur Sabırlı  \n**Öğrenci numarası (görselden okunan):** 22120606015  \n**Üniversite:** İstanbul Medeniyet Üniversitesi'
             lines[-1] = lines[-1].replace('Kendi el yazısı değerlendirmesi tamamlanmadan ödevin bütün gereksinimlerinin karşılandığı söylenemez.', 'Öğrencinin sağladığı numara fotoğrafındaki 11 rakamın tamamı doğru tanınmıştır. Sonuç tek, küçük örnekleme özgüdür; tüm sınıflarda veya farklı kişilerin el yazılarında genel başarı garantisi değildir.')
     text = re.sub(r'(?<=\|)\n\n(?=\|)', '\n', '\n\n'.join(lines))
     (root/'RAPOR.md').write_text(text,encoding='utf-8')

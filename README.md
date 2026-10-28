@@ -4,7 +4,9 @@
 
 PyTorch ile sıfırdan eğitilen, yalnızca tam bağlantılı katmanlar kullanan MLP projesi. Dört yapılandırma, üç başlangıç tohumu ve birbirinden ayrı train/validation/test kümeleri içerir.
 
-> **Teslim durumu:** MNIST ve gerçek el yazısı deneyleri tamamlanmıştır. Sağlanan fotoğraftaki `22120606015` numarası 11/11 doğru tanınmıştır. GitHub’a yükleme ve öğrenci tarafından son kontrol beklenmektedir.
+> **Sonuç özeti:** Validation loss ile seçilen MLP modelinin MNIST test doğruluğu **%97,86**; öğrencinin kendi el yazısıyla yazdığı `22120606015` numarasındaki doğruluğu **11/11 (%100)** olmuştur. El yazısı sonucu yalnızca bu fotoğrafa aittir.
+
+**Proje deposu:** [iremnursbrl/mnist-mlp-handwritten-digits](https://github.com/iremnursbrl/mnist-mlp-handwritten-digits)
 
 ## Hızlı erişim
 
@@ -14,21 +16,27 @@ PyTorch ile sıfırdan eğitilen, yalnızca tam bağlantılı katmanlar kullanan
 - [Gerçek el yazısı sonuçları](results/handwriting/handwriting_report.md)
 - [El yazısı görselleri ve tekrar üretim](handwriting/README.md)
 - [Projeyi anlama ve sunuma hazırlık](docs/SUNUMA_HAZIRLIK.md)
-- [GitHub teslim adımları](docs/TESLIM.md)
 - [Jupyter / Colab çalışma defteri](MNIST_MLP.ipynb)
 
 ![Deney karşılaştırması](results/main/comparison.png)
 
 ## 1. Kurulum
 
-Python 3.12 ile test edilmiştir. Terminali bu README'nin bulunduğu proje klasöründe açın.
+Python 3.12 ile test edilmiştir. Depoyu **Code → Download ZIP** ile indirip çıkarın veya Git ile kopyalayın. Terminali `requirements.txt` ve `src` klasörünün bulunduğu proje kökünde açın. Kurulum için internet bağlantısı gerekir.
 
-```bash
-python -m venv .venv
+**Windows — Komut İstemi (cmd):**
+
+```bat
+py -3.12 -m venv .venv
+.venv\Scripts\activate.bat
 ```
 
-Windows PowerShell: `.venv\Scripts\Activate.ps1`  
-macOS / Linux: `source .venv/bin/activate`
+**macOS / Linux:**
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+```
 
 CPU kurulumu:
 
@@ -38,7 +46,7 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 ```
 
-GPU zorunlu değildir. Paket sürümleri gerçek çalıştırma ortamında kullanılan sürümlerdir. Colab'da mevcut PyTorch ile çalışılabilir; tam tekrar için ortam sürümlerini kontrol edin. GPU kurulumunda cihazınıza uygun PyTorch dağıtımını kullanın.
+GPU zorunlu değildir. Paket sürümleri gerçek çalıştırma ortamında kullanılan sürümlerdir. Colab kullanımında çalışma defterindeki kurulum hücresini izleyin ve ortam sürümlerini kontrol edin. GPU kurulumunda cihazınıza uygun PyTorch dağıtımını kullanın.
 
 ## 2. Sıfırdan yeniden eğitim
 
@@ -67,15 +75,15 @@ Orijinal öğrenci fotoğrafı, 11 kırpım, etiketler ve sonuçlar pakete eklen
 
 Kırpımları özgün fotoğraftan yeniden üretmek için `python -m src.prepare_handwriting` çalıştırılabilir. Başka bir fotoğraf için mevcut koordinatlar kullanılamaz; [el yazısı yönergesini](handwriting/README.md) izleyin.
 
-Önce `results/main/selection.json` içindeki `checkpoint` değerine bakın. Aşağıdaki komut bu yolu otomatik okur:
+Depoda yer alan seçilmiş model ile el yazısı deneyini tekrar çalıştırın:
 
 ```bash
-python -c "import json,subprocess,sys; s=json.load(open('results/main/selection.json')); subprocess.run([sys.executable,'-m','src.handwriting','--checkpoint','results/main/'+s['checkpoint'],'--output','results/handwriting_repeat'],check=True)"
+python -m src.handwriting --checkpoint results/main/dropout_seed42/best.pt --output results/handwriting_repeat
 ```
 
 Paketin tamamlanmış çıktıları `results/handwriting/` içindedir: `predictions.json`, `predictions.png`, tekil 28×28 görüntüler ve `handwriting_report.md`. Yukarıdaki tekrar komutu `results/handwriting_repeat/` klasörüne yazar. Sonraki çalıştırmalarda `--output` ile yeni bir klasör seçin. Bu işlem modeli yeniden eğitmez veya doğru etiketlerden yararlanarak ayarlamaz.
 
-Ana raporun 6. bölümü gerçek el yazısı sonuçlarıyla tamamlanmıştır. Orijinal fotoğraf üzerinde insan tarafından yapılan okuma ile etiketleri teslimden önce kontrol edin.
+Gerçek etiketler fotoğrafın insan tarafından okunmasıyla oluşturulmuştur. Ana raporun 6. bölümünde rakam bazlı sonuçlar ve dağılım farkı değerlendirmesi yer alır. Kendi yeniden eğittiğiniz modeli denemek için `results/my_run/selection.json` içindeki checkpoint yolunu kullanın.
 
 ## 4. Proje yapısı
 
@@ -95,7 +103,7 @@ Ana raporun 6. bölümü gerçek el yazısı sonuçlarıyla tamamlanmıştır. O
 
 MLP, düzleştirme nedeniyle görüntünün yerel uzamsal yapısını CNN gibi işlemez. El yazısı aracı tek rakamlık kırpımlar bekler; bitişik numaraları otomatik bölmez. Fotoğrafta gölge veya kutu çizgileri bulunması ön işlemeyi bozabilir. Üç tohumlu tek bölünme değerlendirmesi, çoklu veri bölünmesiyle çapraz doğrulama değildir. Yalnızca bir okul numarasıyla genel gerçek dünya başarısı ölçülemez.
 
-Ödev gereği CNN ve hazır model kullanılmamıştır. Yapay el yazısı, öğrencinin gerçek el yazısı yerine konulmamıştır. Hazırlanan kod ve rapor öğrenci tarafından incelenmeli, deneyler açıklanabilmeli ve dersin yapay zekâ kullanım kurallarına uyulmalıdır.
+Ödev kapsamında CNN veya dışarıdan alınmış hazır model kullanılmamıştır. El yazısı değerlendirmesinde öğrencinin sağladığı özgün fotoğraf kullanılmıştır. Kod kontrolleri, deney ayrıntıları ve sınırlılıklar raporda açıklanmıştır.
 
 ## Kaynaklar
 
